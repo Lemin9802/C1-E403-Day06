@@ -6,6 +6,7 @@ Dùng sau khi nhóm đã có evidence. Mục tiêu: chốt build slice đủ nh�
 
 ## 1. Gom evidence thành cụm
 
+<<<<<<< HEAD
 | Cụm workflow/pain                                          | Evidence                                          |
 | ---------------------------------------------------------- | ------------------------------------------------- |
 | **"Thuốc này có dùng được với tình trạng của tôi không?"** | Self-use mô phỏng; chưa có Safety Card trên app   |
@@ -13,6 +14,15 @@ Dùng sau khi nhóm đã có evidence. Mục tiêu: chốt build slice đủ nh�
 | **Thông tin Google/AI generic không tin cậy**              | Competitor pattern: cần nguồn whitelist           |
 | **Bot hứa nhiều nhưng fail bước cuối**                     | Analog NEO — API lỗi sau confirm                  |
 | **App đã disclaimer nhưng chưa gắn product flow**          | Play Store: "chỉ tham khảo, không thay chẩn đoán" |
+=======
+| Cụm workflow/pain | Evidence |
+|---|---|
+| **"Thuốc này có dùng được với tình trạng của tôi không?"** | Self-use mô phỏng; chưa có Safety Card trên app |
+| **Chờ chat dược sĩ lâu / treo** | App Store: "xử lý chậm"; AppRecs: treo cả tiếng |
+| **Thông tin Google/AI generic không tin cậy** | Competitor pattern: cần nguồn whitelist |
+| **Bot hứa nhiều nhưng fail bước cuối** | Analog NEO — API lỗi sau confirm |
+| **App đã disclaimer nhưng chưa gắn product flow** | Play Store: "chỉ tham khảo, không thay chẩn đoán" |
+>>>>>>> 1087738651a5c3a23288f10a6f1cd1b7d33dd315
 
 ---
 
@@ -38,6 +48,7 @@ trong khi vẫn kiểm soát rủi ro bằng cờ Vàng/Đỏ, disclaimer, và h
 
 ## 4. Chọn build slice
 
+<<<<<<< HEAD
 | Câu hỏi               | Đạt? | Ghi chú                                                                   |
 | --------------------- | ---- | ------------------------------------------------------------------------- |
 | User cụ thể chưa?     | ✅   | Người cầm thuốc OTC / sắp mua trên Long Châu, có tình trạng cần đối chiếu |
@@ -45,6 +56,15 @@ trong khi vẫn kiểm soát rủi ro bằng cờ Vàng/Đỏ, disclaimer, và h
 | AI decision rõ chưa?  | ✅   | AI tra cứu + draft card + phân loại cảnh báo; không auto đặt hàng/kê đơn  |
 | Failure path rõ chưa? | ✅   | DB miss, triệu chứng khẩn, nhập nhầm tên, API lỗi                         |
 | Có evidence không?    | ✅   | App review + app disclaimer + analog NEO + competitor pattern             |
+=======
+| Câu hỏi | Đạt? | Ghi chú |
+|---|---|---|
+| User cụ thể chưa? | ✅ | Người cầm thuốc OTC / sắp mua trên Long Châu, có tình trạng cần đối chiếu |
+| Task đủ hẹp chưa? | ✅ | 1 tình trạng + 1 thuốc/hoạt chất → 1 Safety Card — demo 3–5 phút |
+| AI decision rõ chưa? | ✅ | AI tra cứu + draft card + phân loại cảnh báo; không auto đặt hàng/kê đơn |
+| Failure path rõ chưa? | ✅ | DB miss, triệu chứng khẩn, nhập nhầm tên, API lỗi |
+| Có evidence không? | ✅ | App review + app disclaimer + analog NEO + competitor pattern |
+>>>>>>> 1087738651a5c3a23288f10a6f1cd1b7d33dd315
 
 **Quyết định:** **Giữ hướng Long Châu Safety Bot**, không mở rộng thành "chatbot y tế đa năng".
 
@@ -52,6 +72,7 @@ trong khi vẫn kiểm soát rủi ro bằng cờ Vàng/Đỏ, disclaimer, và h
 
 ## 5. Quyết định: giữ, giảm scope, hay đổi hướng?
 
+<<<<<<< HEAD
 | Tình huống                                         | Quyết định nhóm                                   |
 | -------------------------------------------------- | ------------------------------------------------- |
 | Ý tưởng ban đầu: chatbot tư vấn sức khỏe Long Châu | **Giảm scope** → Safety Bot hẹp                   |
@@ -59,6 +80,15 @@ trong khi vẫn kiểm soát rủi ro bằng cờ Vàng/Đỏ, disclaimer, và h
 | OCR ảnh thuốc / quét mã vạch                       | **Backlog Day 07+** — Day 06 chỉ nhập text        |
 | Tích hợp API Long Châu thật                        | **Backlog** — Day 06 dùng `drugs-demo.json`       |
 | Chat dược sĩ sẵn có                                | **Giữ** — bot prefill context handoff             |
+=======
+| Tình huống | Quyết định nhóm |
+|---|---|
+| Ý tưởng ban đầu: chatbot tư vấn sức khỏe Long Châu | **Giảm scope** → Safety Bot hẹp |
+| Rủi ro pháp lý cao | **Conditional automation** + disclaimer + dược sĩ |
+| OCR ảnh thuốc / quét mã vạch | **Backlog Day 07+** — Day 06 chỉ nhập text |
+| Tích hợp API Long Châu thật | **Backlog** — Day 06 dùng `drugs-demo.json` |
+| Chat dược sĩ sẵn có | **Giữ** — bot prefill context handoff |
+>>>>>>> 1087738651a5c3a23288f10a6f1cd1b7d33dd315
 
 ---
 
@@ -111,4 +141,8 @@ User mở "Tra cứu an toàn thuốc"
 
 ---
 
+<<<<<<< HEAD
 _Synthesis toolkit — Batch 02 · Long Châu Safety Bot · Day 05_
+=======
+*Synthesis toolkit — Batch 02 · Long Châu Safety Bot · Day 05*
+>>>>>>> 1087738651a5c3a23288f10a6f1cd1b7d33dd315

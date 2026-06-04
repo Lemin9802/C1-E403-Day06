@@ -1,81 +1,136 @@
-# Day 05 Lab — Khởi Động Dự Án AI Product
+"""# REPORT: Chatbot AI Tra Cứu Thuốc
 
-> Tìm vấn đề thật → gom bằng chứng → chốt một lát cắt nhỏ → viết thin SPEC → sẵn sàng build prototype trong Day 06.
+## 1. Thông tin chung
 
-Day 05 không phải một buổi học đầy đủ về AI Product Management. Đây là ngày **khởi động mini-hackathon Day 06**. Cuối ngày, nhóm chưa cần có prototype hoàn chỉnh, nhưng phải đủ rõ để sáng mai build ngay.
-
-## Tài liệu trong folder này
-
-Folder này được chia theo đúng việc cần làm:
-
-| Folder / File | Dùng để làm gì |
-|---|---|
-| `01-invidual-workshop/app-teardown.md` | Bài mổ app AI thật: dùng thử, vẽ flow, tìm path yếu, viết finding thành quyết định product. |
-| `02-group-spec/` | Bộ template cho phần nhóm: gom bằng chứng, chuyển evidence thành insight/opportunity/build slice, và viết thin SPEC cuối Day 05. |
-
-## Cấu trúc repo nộp bài Day 06
-
-Mỗi học viên nộp **một repo cá nhân**:
-
-```text
-Day06-MãHọcViên-HọVàTên
-├── 01-invidual-workshop/
-└── 02-group-spec/
-```
-
-Trong đó:
-
-- `01-invidual-workshop/`: phần reflection cá nhân, nêu rõ vai trò, việc đã làm, phần AI hỗ trợ, và bài học sau demo.
-- `02-group-spec/`: bản làm chung của nhóm. Mỗi học viên copy bản cuối vào repo cá nhân của mình.
-
-## Đọc file nào để làm gì?
-
-1. Làm `01-invidual-workshop/app-teardown.md` khi lớp mổ Moni / NEO / V-AI hoặc app theo track.
-2. Dùng các template trong `02-group-spec/` để gom evidence, chốt insight/opportunity/build slice, và viết thin SPEC trước khi rời lớp.
-
-## Cuối Day 05 cần có gì?
-
-| Artifact | Cần thể hiện rõ |
-|---|---|
-| Evidence pack | User/pain có bằng chứng, không tự bịa. Có self-use và ít nhất một nguồn ngoài nhóm hoặc kế hoạch lấy nguồn rõ. |
-| Opportunity statement | Bằng chứng nói gì sâu hơn về user; vì sao đây là việc đáng sửa. |
-| Build slice | Một user, một task, một AI decision, một output. Không build cả app. |
-| Auto/Aug decision | AI gợi ý hay tự làm? Human giữ quyền ở đâu? |
-| Four paths | Happy, low-confidence, failure, correction. |
-| Failure mode | Một lỗi nguy hiểm nhất và cách prototype xử lý. |
-| Owner plan | Ai phụ trách research, SPEC, prototype, test, demo, repo. |
-
-## Flow cuối Day 05
-
-```text
-16:00  Chọn track/app
-16:15  Self-use + tìm evidence nhanh
-16:45  Gom evidence -> insight
-17:00  Chốt build slice + owner plan
-Tối    Hoàn thiện evidence pack + thin SPEC draft
-```
-
-## Điều quan trọng nhất
-
-- Track chỉ là **miền app thật**, không phải scope.
-- Nhóm không được nộp ý tưởng kiểu "AI assistant cho healthcare" hoặc "chatbot cho travel".
-- Một build slice tốt có dạng:
-
-```text
-Cho [user cụ thể] đang [task/workflow],
-prototype dùng AI để [augment/automate hành động hẹp],
-tạo ra [output],
-và xử lý [failure mode] bằng [mitigation].
-```
-
-Ví dụ:
-
-```text
-Cho bệnh nhân lần đầu không biết chọn chuyên khoa,
-prototype dùng AI để hỏi 3 câu và gợi ý 2-3 chuyên khoa phù hợp,
-đồng thời chuyển sang hướng dẫn khẩn cấp/người thật nếu có red flag.
-```
+| Hạng mục            | Nội dung                                                               |
+| ------------------- | ---------------------------------------------------------------------- |
+| Tên project         | Chatbot AI Tra Cứu Thuốc                                               |
+| Loại tính năng      | AI Chatbot / Drug Lookup Assistant                                     |
+| Mục tiêu chính      | Hỗ trợ người dùng tra cứu thông tin thuốc nhanh, dễ hiểu và an toàn    |
+| Nền tảng triển khai | Web app / Mobile app / App nhà thuốc                                   |
+| Đối tượng sử dụng   | Người dùng phổ thông, khách hàng nhà thuốc, nhân viên hỗ trợ, dược sĩ  |
+| Phạm vi MVP         | Tra cứu thông tin thuốc, không kê đơn, không chẩn đoán, không đổi liều |
 
 ---
 
-*Day 05 Lab — Batch 02 · AI Product Kickoff Sprint*
+## 2. Bối cảnh và vấn đề
+
+Người dùng thường có nhu cầu tra cứu nhanh thông tin về thuốc trước hoặc sau khi mua thuốc. Tuy nhiên, thông tin thuốc trên Internet thường phân tán, khó kiểm chứng và có thể gây hiểu nhầm nếu người dùng tự suy diễn.
+
+Một số vấn đề phổ biến:
+
+- Người dùng không biết thuốc dùng để làm gì.
+- Người dùng không hiểu hoạt chất trong thuốc.
+- Người dùng muốn biết cách dùng thuốc ở mức tham khảo.
+- Người dùng cần kiểm tra tác dụng phụ, chống chỉ định hoặc tương tác thuốc.
+- Người dùng có thể nhầm lẫn giữa tên thương mại và hoạt chất.
+- Người dùng có thể hỏi những câu vượt quá phạm vi an toàn như kê đơn, đổi liều hoặc chẩn đoán bệnh.
+
+Vì vậy, cần xây dựng một chatbot AI có khả năng tra cứu thuốc từ nguồn dữ liệu đã kiểm duyệt, trả lời dễ hiểu và có cơ chế cảnh báo an toàn.
+
+---
+
+## 3. Mục tiêu project
+
+### 3.1. Mục tiêu sản phẩm
+
+Chatbot AI Tra Cứu Thuốc giúp người dùng:
+
+- Tra cứu nhanh thông tin thuốc bằng tên thuốc hoặc hoạt chất.
+- Hiểu công dụng, cách dùng tham khảo, tác dụng phụ, chống chỉ định và tương tác thuốc.
+- Nhận được câu trả lời có cấu trúc, dễ đọc.
+- Được cảnh báo khi câu hỏi vượt quá phạm vi tra cứu thông tin.
+- Được khuyến nghị gặp bác sĩ hoặc dược sĩ trong các trường hợp rủi ro cao.
+
+### 3.2. Mục tiêu AI
+
+AI trong project có nhiệm vụ:
+
+- Hiểu câu hỏi tự nhiên của người dùng.
+- Phân loại intent tra cứu thuốc.
+- Trích xuất tên thuốc, hoạt chất, hàm lượng hoặc dạng dùng nếu có.
+- Chuẩn hóa từ khóa tra cứu.
+- Truy xuất thông tin từ cơ sở dữ liệu thuốc.
+- Tổng hợp câu trả lời ngắn gọn, đúng phạm vi và an toàn.
+
+---
+
+## 4. Phạm vi project
+
+## 4.1. In scope
+
+Project MVP bao gồm:
+
+- Người dùng nhập tên thuốc hoặc câu hỏi về thuốc.
+- Chatbot phân loại mục tiêu tra cứu.
+- Chatbot hỏi thêm thông tin nếu thiếu dữ liệu.
+- Chatbot tra cứu cơ sở dữ liệu thuốc.
+- Chatbot trả lời theo format chuẩn.
+- Chatbot hiển thị cảnh báo an toàn.
+- Chatbot từ chối các yêu cầu kê đơn, chẩn đoán hoặc đổi liều.
+
+## 4.2. Out of scope
+
+Project MVP không bao gồm:
+
+- Không kê đơn thuốc.
+- Không chẩn đoán bệnh.
+- Không đề xuất phác đồ điều trị cá nhân hóa.
+- Không thay thế bác sĩ hoặc dược sĩ.
+- Không xử lý cấp cứu y tế.
+- Không tự động bán thuốc hoặc quyết định thuốc thay người dùng.
+- Không đưa ra liều dùng cá nhân hóa dựa trên bệnh nền nếu chưa có chuyên gia kiểm duyệt.
+
+---
+
+## 5. Người dùng mục tiêu
+
+### 5.1. Primary users
+
+| Nhóm người dùng             | Nhu cầu                                           |
+| --------------------------- | ------------------------------------------------- |
+| Khách hàng nhà thuốc        | Muốn tra cứu nhanh thông tin thuốc                |
+| Người chăm sóc người thân   | Muốn hiểu thuốc người thân đang dùng              |
+| Người dùng phổ thông        | Muốn biết công dụng, cách dùng, tác dụng phụ      |
+| Người đang dùng nhiều thuốc | Muốn kiểm tra thông tin tương tác ở mức tham khảo |
+
+### 5.2. Secondary users
+
+| Nhóm người dùng | Nhu cầu                                      |
+| --------------- | -------------------------------------------- |
+| Dược sĩ         | Có công cụ hỗ trợ tra cứu nhanh              |
+| Nhân viên CSKH  | Trả lời câu hỏi cơ bản của khách hàng        |
+| Admin hệ thống  | Quản lý nguồn dữ liệu và kiểm duyệt nội dung |
+
+---
+
+## 6. User Journey
+
+### 6.1. Journey chính
+
+1. Người dùng mở chatbot.
+2. Người dùng nhập tên thuốc hoặc câu hỏi về thuốc.
+3. Chatbot xác định người dùng muốn tra cứu nội dung gì.
+4. Chatbot kiểm tra câu hỏi có đủ thông tin hay chưa.
+5. Nếu thiếu thông tin, chatbot hỏi bổ sung.
+6. Nếu đủ thông tin, chatbot chuẩn hóa từ khóa.
+7. Chatbot tra cứu dữ liệu thuốc.
+8. Chatbot kiểm tra kết quả có phù hợp hay không.
+9. Chatbot tổng hợp câu trả lời.
+10. Chatbot hiển thị kết quả kèm lưu ý an toàn.
+11. Nếu câu hỏi vượt phạm vi, chatbot khuyến nghị gặp bác sĩ hoặc dược sĩ.
+
+### 6.2. Ví dụ hành trình người dùng
+
+**Tình huống:** Người dùng muốn biết thuốc Paracetamol dùng để làm gì.
+
+```text
+User: Paracetamol dùng để làm gì?
+
+Chatbot:
+- Nhận diện thuốc: Paracetamol
+- Intent: Tra cứu công dụng
+- Tra cứu CSDL thuốc
+- Trả lời: Paracetamol thường được dùng để giảm đau và hạ sốt...
+- Hiển thị lưu ý: Thông tin chỉ mang tính tham khảo...
+```
