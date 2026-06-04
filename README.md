@@ -151,6 +151,7 @@ C1-E403-Day06/
 │   ├── thin-spec-day05.md
 │   ├── spec-day06.md
 │   └── workflow.md
+    └── demo-slides.pptx
 ├── codebase/
 │   ├── README.md
 │   ├── .env.example
@@ -183,6 +184,7 @@ C1-E403-Day06/
 - Thin SPEC Day 5: [`spec/thin-spec-day05.md`](spec/thin-spec-day05.md)
 - SPEC Day 6: [`spec/spec-06.md`](spec/spec-day06.md)
 - Workflow / product flow: [`spec/workflow.md`](spec/workflow.md)
+- Slide demo: [`spec/demo-slides.pptx`](spec/demo-slides.pptx)
 - Code prototype: [`codebase/`](codebase/)
 - Hướng dẫn chạy code: [`codebase/README.md`](codebase/README.md)
 - Reflection cá nhân: [`reflection/`](reflection/)
