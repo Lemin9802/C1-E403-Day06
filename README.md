@@ -181,7 +181,7 @@ C1-E403-Day06/
 ## 8. Link tài liệu
 
 - Thin SPEC Day 5: [`spec/thin-spec-day05.md`](spec/thin-spec-day05.md)
-- SPEC Day 6: [`spec/spec.md`](spec/spec-day06.md)
+- SPEC Day 6: [`spec/spec-06.md`](spec/spec-day06.md)
 - Workflow / product flow: [`spec/workflow.md`](spec/workflow.md)
 - Code prototype: [`codebase/`](codebase/)
 - Hướng dẫn chạy code: [`codebase/README.md`](codebase/README.md)
