@@ -149,16 +149,28 @@ C1-E403-Day06/
 ├── README.md
 ├── spec/
 │   ├── thin-spec-day5.md
-│   └── spec.md
+│   └── spec-day06.md
 ├── codebase/
 │   ├── README.md
+│   ├── .env.example
 │   ├── package.json
 │   ├── index.html
-│   ├── server/
-│   ├── js/
 │   ├── css/
+│   │   └── styles.css
 │   ├── data/
-│   └── assets/
+│   │   └── drugs-demo.json
+│   ├── js/
+│   │   ├── app.js
+│   │   ├── api-client.js
+│   │   ├── drug-engine.js
+│   │   └── local-lookup.js
+│   └── server/
+│       ├── index.js
+│       ├── drug-db.js
+│       ├── conversation.js
+│       ├── ai-provider.js
+│       └── routes/
+│           └── drugs.js
 └── reflection/
     └── reflection cá nhân
 ```
@@ -167,8 +179,8 @@ C1-E403-Day06/
 
 ## 8. Link tài liệu
 
-- Thin SPEC Day 5: [`spec/thin-spec-day5.md`](spec/thin-spec-day5.md)
-- SPEC Day 6: [`spec/spec.md`](spec/spec.md)
+- Thin SPEC Day 5: [`spec/thin-spec-day5.md`](spec/thin-spec-day05.md)
+- SPEC Day 6: [`spec/spec.md`](spec/spec-day06.md)
 - Code prototype: [`codebase/`](codebase/)
 - Hướng dẫn chạy code: [`codebase/README.md`](codebase/README.md)
 - Reflection cá nhân: [`reflection/`](reflection/)

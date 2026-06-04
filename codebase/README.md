@@ -1,104 +1,165 @@
 # Long Châu Safety Bot — Prototype
 
-Chat tra cứu thuốc + Safety Card. Hỗ trợ **OpenAI**, **DeepSeek**, **Gemini** (+ DB local + fuzzy).
+Prototype chat tra cứu thuốc + Safety Card.  
+Hỗ trợ DB local, fuzzy matching tên thuốc và optional AI provider: OpenAI / DeepSeek / Gemini.
 
-## Chạy nhanh
+---
+
+## 1. Cách chạy local
+
+Từ root repo:
 
 ```bash
-cd 03-prototype
+cd codebase
 npm install
 cp .env.example .env
 npm run dev
 ```
 
-Mở http://localhost:3000
+Mở trình duyệt tại:
 
-## Cấu hình API
+```text
+http://localhost:3000
+```
 
-| Biến | Mục đích |
-|------|----------|
-| `AI_PROVIDER` | `auto` · `openai` · `deepseek` · `gemini` |
-| `OPENAI_API_KEY` | OpenAI — web search / Google CSE |
-| `DEEPSEEK_API_KEY` | DeepSeek — chat + Google CSE (nếu có) |
-| `GEMINI_API_KEY` | Gemini — Google Search grounding |
-| `GOOGLE_API_KEY` + `GOOGLE_CSE_ID` | Nguồn web bổ sung |
+---
 
-### Chọn provider
+## 2. Yêu cầu môi trường
 
-| `AI_PROVIDER` | Hành vi |
-|---------------|---------|
-| `auto` | OpenAI → DeepSeek → Gemini (key nào có trước) |
-| `deepseek` | Bắt buộc DeepSeek, fallback OpenAI/Gemini |
-| `openai` | Bắt buộc OpenAI, fallback DeepSeek/Gemini |
-| `gemini` | Bắt buộc Gemini, fallback OpenAI/DeepSeek |
+```text
+Node.js 18+
+npm
+```
 
-Lấy key:
-- DeepSeek: https://platform.deepseek.com/api_keys
-- OpenAI: https://platform.openai.com/api-keys
-- Gemini: https://aistudio.google.com/apikey
+---
 
-### Logic tra cứu
+## 3. Cấu hình API
 
-1. **Thuốc có trong DB** (10 thuốc demo) → Safety Card từ database, **không gọi API**
-2. **Gõ sai tên** → gợi ý fuzzy từ DB trước
-3. **Thuốc không có trong DB** → mới gọi OpenAI / DeepSeek / Gemini
+Prototype có thể chạy bằng **DB local** mà không cần API key.
 
-### Ví dụ cấu hình DeepSeek
+Nếu muốn bật AI/API fallback, điền key trong file `.env`.
 
 ```env
-AI_PROVIDER=deepseek
-DEEPSEEK_API_KEY=sk-...
+AI_PROVIDER=auto
+OPENAI_API_KEY=
+DEEPSEEK_API_KEY=
+GEMINI_API_KEY=
+GOOGLE_API_KEY=
+GOOGLE_CSE_ID=
+PORT=3000
 ```
 
-## API endpoints
+Không commit file `.env` thật. Chỉ commit `.env.example`.
+
+---
+
+## 4. Công cụ sử dụng
+
+| Thành phần | Công cụ |
+|---|---|
+| Frontend | HTML, CSS, JavaScript |
+| Backend | Node.js, Express |
+| Fuzzy matching | Fuse.js |
+| Local DB | `data/drugs-demo.json` |
+| Optional AI provider | OpenAI / DeepSeek / Gemini |
+| Optional search | Google CSE |
+| Optional OCR | OCR endpoint |
+
+---
+
+## 5. Logic tra cứu
+
+```text
+1. Thuốc có trong DB local
+   → trả Safety Card từ database, không gọi API.
+
+2. User gõ sai tên thuốc
+   → gợi ý fuzzy từ DB trước, không đoán bừa.
+
+3. Thuốc không có trong DB
+   → fallback sang OpenAI / DeepSeek / Gemini nếu có API key.
+
+4. Không có dữ liệu hoặc API lỗi
+   → không bịa Safety Card, chuyển user sang hỏi dược sĩ.
+```
+
+---
+
+## 6. API endpoints
 
 | Method | Path | Mô tả |
-|--------|------|--------|
-| GET | `/api/drugs/health` | `active`: openai / deepseek / gemini |
-| POST | `/api/drugs/lookup` | `{ condition, drugQuery, age, gender }` |
+|---|---|---|
+| GET | `/api/drugs/health` | Kiểm tra trạng thái DB / AI provider |
+| GET | `/api/drugs/suggest?q=...` | Gợi ý tên thuốc khi user gõ sai |
+| POST | `/api/drugs/lookup` | Tra thuốc và trả Safety Card |
+| POST | `/api/drugs/chat` | Chat với AI provider nếu có cấu hình |
+| POST | `/api/drugs/ocr` | OCR ảnh thuốc / nhãn thuốc |
+| POST | `/api/drugs/search-google` | Debug Google CSE |
 
-## Port bị chiếm
+Request chính cho `/api/drugs/lookup`:
 
-```bash
-lsof -ti:3000 | xargs kill -9 && npm run dev
+```json
+{
+  "condition": "sốt nhẹ",
+  "drugQuery": "Paracetamol",
+  "age": 25,
+  "gender": "nam"
+}
 ```
 
-## Deploy Streamlit (Streamlit Community Cloud)
+---
 
-Streamlit **nhúng full web Long Châu** qua iframe (cần server Node). Chat-only: `?mode=chat`.
+## 7. Demo cases
 
-### Chạy local (khuyên dùng — full web)
+### Happy path
 
-**Terminal 1** — web + API:
-
-```bash
-cd 03-prototype
-npm install
-npm run dev
+```text
+condition: sốt nhẹ
+age: 25
+gender: nam
+drugQuery: Paracetamol
 ```
 
-**Terminal 2** — Streamlit bọc web:
+Kỳ vọng: bot tìm thấy thuốc trong DB và trả Safety Card.
 
-```bash
-cd 03-prototype
-pip install -r requirements.txt
-streamlit run streamlit_app.py
+### Low-confidence / typo
+
+```text
+condition: sốt nhẹ
+age: 25
+gender: nam
+drugQuery: Panadl
 ```
 
-Mở http://localhost:8501 — sẽ thấy **trang Long Châu đầy đủ** (header, hero, sản phẩm, nút Tư vấn).
+Kỳ vọng: bot gợi ý thuốc gần đúng, không tự tạo Safety Card ngay.
 
-Hoặc mở trực tiếp http://localhost:3000 (không cần Streamlit).
+### Failure / urgent
 
-Streamlit cũng **tự thử khởi động** `npm run dev` nếu port 3000 chưa có ai dùng.
+```text
+condition: khó thở, sưng mặt sau khi uống thuốc
+age: 30
+gender: nữ
+drugQuery: Ibuprofen
+```
 
-### Chỉ chat (không web)
+Kỳ vọng: bot dừng flow tra cứu thường và hướng user gọi 115 / đến cơ sở y tế / hỏi dược sĩ.
 
-http://localhost:8501/?mode=chat
+### Correction
 
-### Deploy Streamlit Cloud
+```text
+Input ban đầu: Ibuprofen
+User sửa: Paracetamol
+```
 
-Streamlit Cloud **không chạy Node** — trên cloud chỉ dùng `?mode=chat` hoặc deploy web riêng (Vercel/Render cho `npm run dev`).
+Kỳ vọng: bot bỏ kết quả cũ và tạo Safety Card mới.
 
-1. Push repo GitHub → [share.streamlit.io](https://share.streamlit.io)
-2. Main file: `streamlit_app.py` (root) hoặc `03-prototype/streamlit_app.py`
-3. Secrets (tuỳ chọn): `OPENAI_API_KEY`
+---
+
+## 8. Giới hạn prototype
+
+- Không kê đơn.
+- Không chẩn đoán bệnh.
+- Không đổi liều thuốc.
+- Không thay thế dược sĩ/bác sĩ.
+- Không tích hợp production API Long Châu.
+- DB thuốc là dữ liệu demo phục vụ prototype Day 6.
