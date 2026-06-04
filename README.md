@@ -2,8 +2,8 @@
 
 ## 1. Thông tin nhóm
 
-**Lớp:** E403 
-**Nhóm:** C1
+**Lớp:** E403  
+**Nhóm:** C1  
 **Track:** Healthcare / Pharmacy  
 **Sản phẩm:** Long Châu Safety Bot  
 **App tham chiếu:** Long Châu — Chuyên gia thuốc  
@@ -14,7 +14,7 @@
 
 | Mã học viên | Họ và tên | GitHub ID | Phân công công việc Day 6 |
 |---|---|---|---|
-| 2A202601004 | Phung Văn Thạch | `ThachPhung` | **Prototype owner chính.** Xây dựng flow Long Châu Safety Bot, chỉnh logic chatbot, cập nhật UI chat-only, xử lý intent/symptom flow, API client, OCR/image input, deploy entrypoint và hỗ trợ demo kỹ thuật. |
+| 2A202601004 | Phùng Văn Thạch | `ThachPhung` | **Prototype owner chính.** Xây dựng flow Long Châu Safety Bot, chỉnh logic chatbot, cập nhật UI chat-only, xử lý intent/symptom flow, API client, OCR/image input, deploy entrypoint và hỗ trợ demo kỹ thuật. |
 | 2A202600564 | Lương Quốc Đoàn | `luongdoan305` | **UX/UI owner.** Chỉnh giao diện, logo/assets, visual polish, làm prototype gần phong cách Long Châu hơn, hỗ trợ trải nghiệm người dùng trong flow tra cứu thuốc và Safety Card. |
 | 2A202600847 | Trịnh Vũ Anh Tuấn | `hannuta69@gmail.com` | **Rule/DB owner.** Cập nhật `drugs-demo.json`, bổ sung thuốc, aliases, chống chỉ định, warnings, `conditionRules`, `genderRules`, source demo và rule cảnh báo Xanh/Vàng/Đỏ. |
 | 2A202600951 | Hoàng Phương Thảo | `pthaoxinhgai` | **Workflow/documentation support.** Hỗ trợ workflow, tài liệu Day 5/Day 6, kiểm tra luồng trải nghiệm, hỗ trợ submission hygiene như `.gitignore` để tránh commit file nhạy cảm. |
