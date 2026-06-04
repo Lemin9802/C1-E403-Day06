@@ -15,8 +15,6 @@
 
 ## 2. Bối cảnh và vấn đề
 
-Người dùng thường có nhu cầu tra cứu nhanh thông tin về thuốc trước hoặc sau khi mua thuốc. Tuy nhiên, thông tin thuốc trên Internet thường phân tán, khó kiểm chứng và có thể gây hiểu nhầm nếu người dùng tự suy diễn.
-
 Một số vấn đề phổ biến:
 
 - Người dùng không biết thuốc dùng để làm gì.
