@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nhà thuốc Long Châu</title>
-    <link rel="stylesheet" href="./css/styles.css?v=8" />
+    <link rel="stylesheet" href="./css/styles.css?v=13" />
   </head>
   <body>
     <div class="lc-site">
@@ -21,26 +21,15 @@
             <a href="#">Hỗ trợ</a>
             <a href="#">Hệ thống nhà thuốc</a>
             <a href="#">Theo dõi đơn hàng</a>
-            <span id="api-badge" class="api-badge api-badge--top">API</span>
+            <span id="api-badge" class="api-badge api-badge--top" hidden>API</span>
           </div>
         </div>
       </div>
 
       <header class="lc-header">
         <div class="lc-container lc-header__inner">
-          <!-- <a href="#" class="lc-logo" aria-label="Long Châu">
-            <span class="lc-logo__mark" aria-hidden="true">LC</span>
-            <span class="lc-logo__text">
-              <strong>Long Châu</strong>
-              <small>Nhà Thuốc Uy Tín</small>
-            </span>
-          </a> -->
-          <a href="#" class="lc-logo" aria-label="Long Châu">
-            <img
-              src="./assets/images/logo.png"
-              alt="Long Châu"
-              class="lc-logo__image"
-            />
+          <a href="#" class="lc-logo" aria-label="Nhà thuốc Long Châu">
+            <img src="./assets/longchau-logo.png" alt="Nhà thuốc Long Châu" class="lc-logo__img" width="262" height="100" />
           </a>
 
           <form class="lc-search" role="search">
@@ -64,9 +53,6 @@
           </form>
 
           <div class="lc-header__actions">
-            <a href="#" class="lc-header__action"
-              ><span aria-hidden="true">♙</span><small>Đăng nhập</small></a
-            >
             <a href="#" class="lc-header__action lc-header__action--notify">
               <span aria-hidden="true">◉</span><small>Thông báo</small><b>2</b>
             </a>
@@ -75,6 +61,10 @@
               <span><small>Giỏ hàng</small><strong>3 sản phẩm</strong></span>
               <b>3</b>
             </button>
+            <div class="lc-header__auth">
+              <a href="#" class="lc-auth-btn lc-auth-btn--ghost">Log In</a>
+              <a href="#" class="lc-auth-btn lc-auth-btn--primary">Sign In</a>
+            </div>
           </div>
         </div>
 
@@ -139,8 +129,8 @@
           </div>
           <div class="lc-hero__media" aria-hidden="true">
             <img
-              src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=720&h=470&fit=crop&auto=format"
-              alt=""
+              src="./assets/hero-family.png"
+              alt="Gia đình hạnh phúc - sức khỏe toàn diện"
             />
             <div class="lc-glass lc-glass--rating">
               ★
@@ -371,7 +361,7 @@
       aria-expanded="false"
     >
       <span class="chat-fab__pulse" aria-hidden="true"></span>
-      <span class="chat-fab__avatar" aria-hidden="true">💊</span>
+      <img src="./assets/bot-avatar.png" alt="" class="chat-fab__avatar" width="58" height="58" aria-hidden="true" />
       <span class="chat-fab__label">Tư vấn</span>
     </button>
 
@@ -385,7 +375,7 @@
       >
         <header class="chat-panel__header">
           <div class="chat-panel__brand">
-            <span class="chat-panel__icon">💊</span>
+            <img src="./assets/bot-avatar.png" alt="" class="chat-panel__icon" width="42" height="42" />
             <div>
               <strong id="chat-panel-title">Long Châu Safety Bot</strong>
               <span class="fine">Tư vấn tra an toàn thuốc</span>
@@ -414,97 +404,44 @@
           <div id="api-alert" class="api-alert" hidden role="alert"></div>
 
           <div class="safety-feature__body">
-            <section
-              id="profile-section"
-              class="profile-section"
-              aria-label="Thông tin tra cứu"
-            >
+            <section id="profile-section" class="profile-section" aria-label="Thông tin tra cứu">
               <form id="profile-form" class="profile-form">
                 <div class="profile-form__head">
                   <h2>Thông tin tra cứu</h2>
-                  <p class="fine">
-                    Điền một lần - sau đó chỉ nhắn thêm tên thuốc
-                  </p>
+                  <p class="fine">Điền một lần - sau đó chỉ nhắn thêm tên thuốc</p>
                 </div>
 
                 <div class="form-grid">
                   <label class="field field--full">
                     <span class="field__label">Tình trạng hiện tại</span>
-                    <input
-                      id="field-condition"
-                      name="condition"
-                      type="text"
-                      placeholder="vd: sốt nhẹ, đau đầu..."
-                      required
-                    />
+                    <input id="field-condition" name="condition" type="text" placeholder="vd: sốt nhẹ, đau đầu..." required />
                   </label>
                   <label class="field field--full">
                     <span class="field__label">Tên thuốc / hoạt chất</span>
-                    <input
-                      id="field-drug"
-                      name="drug"
-                      type="text"
-                      placeholder="vd: Panadol, Paracetamol..."
-                      required
-                    />
+                    <input id="field-drug" name="drug" type="text" placeholder="vd: Panadol, Paracetamol..." required />
                   </label>
                   <label class="field">
                     <span class="field__label">Tuổi</span>
-                    <input
-                      id="field-age"
-                      name="age"
-                      type="number"
-                      min="0"
-                      max="120"
-                      placeholder="30"
-                      required
-                    />
+                    <input id="field-age" name="age" type="number" min="0" max="120" placeholder="30" required />
                   </label>
                   <fieldset class="field field--gender">
                     <legend class="field__label">Giới tính</legend>
                     <div class="radio-row">
-                      <label class="radio-pill"
-                        ><input
-                          type="radio"
-                          name="gender"
-                          value="male"
-                          required
-                        />
-                        Nam</label
-                      >
-                      <label class="radio-pill"
-                        ><input type="radio" name="gender" value="female" />
-                        Nữ</label
-                      >
+                      <label class="radio-pill"><input type="radio" name="gender" value="male" required /> Nam</label>
+                      <label class="radio-pill"><input type="radio" name="gender" value="female" /> Nữ</label>
                     </div>
                   </fieldset>
                 </div>
 
                 <p id="form-error" class="form-error" role="alert" hidden></p>
 
-                <button
-                  type="submit"
-                  id="submit-form-btn"
-                  class="btn btn--primary btn--block"
-                >
-                  Bắt đầu tra cứu
-                </button>
+                <button type="submit" id="submit-form-btn" class="btn btn--primary btn--block">Bắt đầu tra cứu</button>
 
                 <div class="demo-row">
                   <span class="fine">Demo:</span>
-                  <button type="button" class="chip chip--sm" data-demo="happy">
-                    30t nữ + Panadol
-                  </button>
-                  <button type="button" class="chip chip--sm" data-demo="typo">
-                    8t + Panadl
-                  </button>
-                  <button
-                    type="button"
-                    class="chip chip--sm"
-                    data-demo="urgent"
-                  >
-                    Khó thở
-                  </button>
+                  <button type="button" class="chip chip--sm" data-demo="happy">30t nữ + Panadol</button>
+                  <button type="button" class="chip chip--sm" data-demo="typo">8t + Panadl</button>
+                  <button type="button" class="chip chip--sm" data-demo="urgent">Khó thở</button>
                 </div>
               </form>
 
@@ -513,15 +450,9 @@
                   <span class="profile-bar__title">Hồ sơ tra cứu</span>
                   <p id="profile-bar-text" class="profile-bar__text"></p>
                 </div>
-                <button
-                  type="button"
-                  id="edit-profile-btn"
-                  class="btn btn--ghost btn--sm"
-                >
-                  Sửa
-                </button>
+                <button type="button" id="edit-profile-btn" class="btn btn--ghost btn--sm">Sửa</button>
               </div>
-            </section>
+            </div>
 
             <div class="safety-chat">
               <div
@@ -537,28 +468,10 @@
                   <span id="lookup-status-detail" class="fine"></span>
                 </div>
               </div>
-              <main
-                class="chat"
-                id="messages"
-                role="log"
-                aria-live="polite"
-              ></main>
+              <main class="chat" id="messages" role="log" aria-live="polite"></main>
               <footer class="composer composer--locked" id="composer">
-                <input
-                  id="user-input"
-                  type="text"
-                  autocomplete="off"
-                  placeholder="Điền form trước..."
-                  disabled
-                />
-                <button
-                  type="button"
-                  id="send-btn"
-                  class="btn btn--primary"
-                  disabled
-                >
-                  Tra thuốc
-                </button>
+                <input id="user-input" type="text" autocomplete="off" placeholder="Điền form trước..." disabled />
+                <button type="button" id="send-btn" class="btn btn--primary" disabled>Tra thuốc</button>
               </footer>
             </div>
           </div>
@@ -566,6 +479,6 @@
       </div>
     </div>
 
-    <script type="module" src="./js/app.js?v=8"></script>
+    <script type="module" src="./js/app.js?v=20"></script>
   </body>
 </html>
